@@ -1,0 +1,22 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+<div class="container" style="color:lightgrey">
+    <h2>Bize Ulaşın</h2>
+    <span>Dönüşlerimiz mail adresinize yapılacaktır.</span>
+    <form method="post">
+        <br />
+        <label style="color:black">Mail Adresiniz</label>
+        <input type="email" asp-for="Email" class="form-control" required />
+        <br />
+        <label style="color:black">Konu</label>
+        <input type="text" asp-for="Subject" class="form-control" required />
+        <br />
+        <label style="color:black">Mesajınız</label>
+        <input type="text" asp-for="Message" class="form-control" required />
+        <br />
+        <button class="btn btn-primary">Gönder</button>
+    </form>
+</div>

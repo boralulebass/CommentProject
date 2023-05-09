@@ -1,0 +1,63 @@
+﻿@model IPagedList<Comment>
+@{
+    ViewData["Title"] = "MyComments";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+@*<h2>Yorumlarım</h2>
+
+<div class="tab-content">
+    @foreach (var item in Model)
+    {
+        <div class="timeline timeline-inverse">
+            <div>
+                <i class="fas fa-comments bg-warning"></i>
+
+
+
+                <div class="timeline-item">
+                    <span class="time"><i class="far fa-clock"></i> @(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</span>
+
+
+
+                    <h3 class="timeline-header"><a href="#">@item.Title.TitleName</a> || Kategori: @item.Title.Category.CategoryName</h3>
+
+
+
+                    <div class="timeline-body">
+                        @item.CommentDetails
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>*@
+<h2>Yorumlarım</h2>
+<br />
+<span>@ViewBag.message</span>
+@foreach (var item in Model)
+{
+    <div class="coment-bottom bg-white p-2 px-4" style="border: thin solid black">
+        <div class="commented-section mt-2">
+            <div class="d-flex flex-row align-items-center commented-user">
+                <h5 class="mr-2"><a href="/WriterComment/CommentsByTitle/@item.TitleID/">@item.Title.TitleName</a></h5><span class="dot mb-1"></span><span class="mb-1 ml-2">@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</span>
+            </div>
+            <div class="comment-text-sm">
+                <span>@item.CommentDetails</span>
+            </div>
+            <div class="reply-section">
+                <div class="d-flex flex-row align-items-center voting-icons">
+                    <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">@item.Title.Category.CategoryName</span><span class="dot ml-2"></span>
+                    <a href="/Comment/DeleteComment/@item.CommentID" class="btn btn-outline-warning btn-sm" style="">Sil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+<br />
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("MyComments",new {page}))
+<br />
+<a href="/WriterComment/Index/" class="btn btn-primary">Yorum Oluştur</a>
+
+

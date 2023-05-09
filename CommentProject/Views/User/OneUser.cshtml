@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "OneUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <h3>Ad Soyad: @ViewBag.name @ViewBag.surname</h3>
+    <h5>Kullanıcı Adı: @ViewBag.username</h5>
+    <h6> Mail Adresi: @ViewBag.mail</h6>
+    <br />
+    <br />
+    @await Component.InvokeAsync("_TitleListByUser", new {id = ViewBag.id})
+    <br />
+    @await Component.InvokeAsync("_CommentListByUser", new{id = ViewBag.id})
+
+</div>

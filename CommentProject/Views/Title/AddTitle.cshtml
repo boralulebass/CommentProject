@@ -1,0 +1,20 @@
+﻿@model Title
+@{
+    ViewData["Title"] = "AddTitle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    <div class="container">
+        <h2>Başlık Oluşturma Sayfası</h2>
+        <br />
+        <label>Başlık</label>
+        <input type="text" asp-for="TitleName" class="form-control" />
+        <span asp-validation-for="TitleName" class="text-danger"></span>
+        <br />
+        <label>Kategori</label>
+        @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.v, new {@class="form-control"})
+        <br />
+        <button class="btn btn-outline-primary">Ekle</button>
+    </div>
+</form>

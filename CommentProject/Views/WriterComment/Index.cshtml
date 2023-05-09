@@ -1,0 +1,21 @@
+﻿@model Comment
+
+@{
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="container" style="color:lightgray">
+    <form method="post">
+        <h2>Yorum Yap</h2>
+        <br />
+        <label style="color:black">Başlık Seçiniz</label>
+        @Html.DropDownListFor(x=>x.TitleID,(List<SelectListItem>)ViewBag.v, new{@class="form-control"})
+        <br />
+        <label style="color:black">Yorumunuz</label>
+<textarea class="form-control" rows="5" asp-for="CommentDetails"></textarea>
+        <span asp-validation-for="CommentDetails" class="text-danger"></span>
+
+        <br />
+        <button class="btn btn-primary">Yorumu Ekle</button>
+    </form>
+</div>

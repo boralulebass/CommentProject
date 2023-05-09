@@ -1,0 +1,28 @@
+﻿@model List<Contact>
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <h2>İletişim</h2>
+    <br />
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Mail</th>
+                <th>Konu</th>
+                <th>Mesaj</th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Email</td>
+                <td>@item.Subject</td>
+                <td>@item.Message</td>
+                <td><a href="/WriterContact/ContactDelete/@item.MessageId/" class="btn btn-danger btn-sm">Sil</a></td>
+            </tr>
+        }
+    </table>
+</div>

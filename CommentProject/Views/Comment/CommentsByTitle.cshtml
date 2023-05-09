@@ -1,0 +1,41 @@
+﻿@model IPagedList<Comment>
+
+@{
+    ViewData["Title"] = "CommentsByTitle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Yorumlar</h2>
+    <br />
+    <div class="tab-content">
+        @foreach (var item in Model)
+        {
+            <div class="timeline timeline-inverse">
+                <div>
+                    <i class="fas fa-comments bg-warning"></i>
+
+
+
+                    <div class="timeline-item">
+                        <span class="time"><i class="far fa-clock"></i> @(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</span>
+
+
+
+                        <h3 class="timeline-header"><a href="/User/OneUser/@item.AppUserID">@item.AppUser.Name @item.AppUser.Surname</a> Başlık: @item.Title.TitleName - Kategori: @item.Title.Category.CategoryName</h3>
+
+
+
+                        <div class="timeline-body">
+                            @item.CommentDetails
+                            <div>
+                                <a href="/Comment/DeleteComment/@item.CommentID" class="btn btn-danger" style="float:right">Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("CommentsByTitle",new {page}))
+</div>

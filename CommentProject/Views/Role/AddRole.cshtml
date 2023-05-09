@@ -1,0 +1,16 @@
+﻿@model CommentProject.Models.RoleViewModels.AddRoleViewModel
+
+@{
+    ViewData["Title"] = "AddRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+<h2>Yeni Rol Ekleme Sayfası</h2>
+<br />
+<form method="post">
+    <label>Rol Adını Giriniz</label>
+    <input type="text" class="form-control" asp-for="RoleName" />
+    <br />
+    <button class="btn btn-primary">Rol Ekle</button>
+</form>
+</div>

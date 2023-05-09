@@ -1,0 +1,16 @@
+﻿@model List<Title>
+
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        @foreach (var item in Model)
+        {
+            <li class="nav-item">
+                <a href="/Default/Index/@item.TitleID" class="nav-link">
+                    <p>
+                        @item.TitleName
+                    </p>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

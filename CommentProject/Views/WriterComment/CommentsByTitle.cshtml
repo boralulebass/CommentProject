@@ -1,0 +1,35 @@
+﻿@model IPagedList<Comment>
+@{
+    ViewData["Title"] = "CommentsByTitle";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h2>@ViewBag.titlename</h2>
+<br />
+@if (ViewBag.info != null)
+{
+    <h6>@ViewBag.info</h6>
+}
+@foreach (var item in Model)
+{
+    <div class="coment-bottom bg-white p-2 px-4" style="border: thin solid black">
+        <div class="commented-section mt-2">
+            <div class="d-flex flex-row align-items-center commented-user">
+                <h5 class="mr-2"><a href="/WriterProfile/Profile/@item.AppUserID/">@item.AppUser.Name @item.AppUser.Surname</a></h5><span class="dot mb-1"></span><span class="mb-1 ml-2">@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</span>
+            </div>
+            <div class="comment-text-sm">
+                <span>@item.CommentDetails</span>
+            </div>
+            <div class="reply-section">
+                <div class="d-flex flex-row align-items-center voting-icons">
+                    <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i> <i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">@item.AppUser.Email</span><span class="dot ml-2"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+<br />
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("CommentsByTitle",new {page}))
+<br />
+<a href="/WriterComment/AddCommentsWTitle/@ViewBag.titleID" class="btn btn-primary">Yorum Yap</a>

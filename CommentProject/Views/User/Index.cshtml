@@ -1,0 +1,45 @@
+﻿@model IPagedList<AppUser>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Kullanıcı Listesi</h2>
+    <br />
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Ad Soyad</th>
+                <th>Mail</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name @item.Surname</td>
+                <td>@item.Email</td>
+                <td><a href="/User/OneUser/@item.Id" class="btn btn-outline-dark">Detaylar</a></td>
+                <td><a href="/User/DeleteUser/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+                <td><a href="/User/AssignRole/@item.Id" class="btn btn-outline-secondary">Roller</a></td>
+                @if (item.EmailConfirmed == false)
+                {
+                    <td><a href="/User/EmailConfirming/@item.Id" class="btn btn-outline-warning">E-Mail Doğrula</a></td>
+                }
+                else
+                {
+                    <td><a href="#" class="btn btn-success">Doğrulanmış E-Mail</a></td>
+
+                }
+
+
+            </tr>
+        }
+    </table>
+    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}))
+</div>

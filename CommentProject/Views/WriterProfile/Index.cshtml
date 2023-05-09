@@ -1,0 +1,61 @@
+﻿@model EditProfileViewModel 
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Change password card-->
+            <div class="card mb-4">
+                <div class="card-header">Profili Düzenle</div>
+                <div class="card-body">
+                    <form method="post" action="/WriterProfile/Index/">
+                        <div class="mb-3">
+                            <label class="small mb-1" >Ad</label>
+                            <input class="form-control" id="currentPassword" type="text" asp-for="Name" placeholder="Adınızı giriniz." required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1">Soyisim</label>
+                            <input class="form-control" id="newPassword" type="text" asp-for="Surname" placeholder="Soyisiminizi giriniz." required>
+                        </div>
+@*                        <div class="mb-3">
+                            <label class="small mb-1">Kullanıcı Adı</label>
+                            <input class="form-control" id="confirmPassword" type="text" asp-for="Username" placeholder="Kullanıcı adınızı giriniz." required>
+                        </div>*@
+                        <div class="mb-3">
+                            <label class="small mb-1">Mail Adresi</label>
+                            <input class="form-control" id="confirmPassword" type="email" asp-for="Email" placeholder="Mail adresinizi giriniz." required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1">Şifre</label>
+                            <input class="form-control" id="confirmPassword" type="password" asp-for="Password" placeholder="Değişiklikleri kaydetmek için şifrenizi giriniz." required>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <button class="btn btn-primary">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Security preferences card-->
+        </div>
+        <div class="col-lg-4">
+            <!-- Two factor authentication card-->
+            @await Html.PartialAsync("/Views/WriterProfile/EditPassword.cshtml")
+            <!-- Delete account card-->
+            <div class="card mb-4">
+                <div class="card-header">Hesabı Sil</div>
+                <div class="card-body">
+                    <p>Hesabı silmek kalıcı ve geri dönülemez bir işlemdir. Eğer bu şartları onaylıyorsanız aşağıdaki butona tıklayıp hesabınızı kalıcı olarak silebilirsiniz.</p>
+                    <a href="/WriterProfile/DeleteUser/" style="color:red">Anlıyorum, hesabımı sil.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

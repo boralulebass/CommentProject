@@ -1,0 +1,28 @@
+﻿@model IPagedList<Comment>
+@{
+    ViewData["Title"] = "AllComments";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h2>Tüm Yorumlar</h2>
+<br />
+@foreach (var item in Model)
+{
+    <div class="coment-bottom bg-white p-2 px-4" style="border: thin solid black">
+        <div class="commented-section mt-2">
+            <div class="d-flex flex-row align-items-center commented-user">
+                <h5 class="mr-2"><a href="/WriterComment/CommentsByTitle/@item.TitleID">@item.Title.TitleName</a></h5><span class="dot mb-1"></span><span class="mb-1 ml-2">Kimden: <a href="/WriterProfile/Profile/@item.AppUserID/">@item.AppUser.Name @item.AppUser.Surname</a></span>
+            </div>
+            <div class="comment-text-sm">
+                <span>@item.CommentDetails</span>
+            </div>
+            <div class="reply-section">
+                <div class="d-flex flex-row align-items-center voting-icons">
+                    <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">@(((DateTime)item.CommentDate).ToString("dd-MMM-yyyy"))</span><span class="dot ml-2"><a href="/WriterTitle/TitlesByCategory/@item.Title.CategoryID/">@item.Title.Category.CategoryName</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("AllComments",new {page}))

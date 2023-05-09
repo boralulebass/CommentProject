@@ -1,0 +1,17 @@
+﻿@model List<Title>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>Açtığı Başlıklar</th>
+        <th></th>
+    </tr>
+    </thead>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.TitleName</td>
+            <td><a href="/Comment/CommentsByTitle/@item.TitleID" class="btn btn-outline-dark">Yorumları Görüntüle</a></td>
+        </tr>
+    }
+</table>

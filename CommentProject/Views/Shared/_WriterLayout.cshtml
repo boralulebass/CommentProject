@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>ASP Net Core 6.0</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/sidebar-01/css/style.css">
+</head>
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(/AdminLTE-3.0.4/dist/img/kindpng_5107.png);"></a>
+                <ul class="list-unstyled components mb-5">
+                    @if (User.IsInRole("Yazar") == false)
+                    {
+                        <li>
+                            <a href="/Login/Index/">Giriş Yap</a>
+                        </li>
+                    }
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Gözat</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="/WriterCategory/Index/">Tüm Kategoriler</a>
+                            </li>
+                            <li>
+                                <a href="/WriterTitle/Index/">Tüm Başlıklar</a>
+                            </li>
+                            <li>
+                                <a href="/WriterComment/AllComments/">Tüm Yorumlar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @if (User.IsInRole("Yazar"))
+                    {
+                        <li>
+                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Profilim</a>
+                            <ul class="collapse list-unstyled" id="homeSubmenu">
+                                <li>
+                                    <a href="/WriterProfile/Profile/0">Profilim</a>
+                                </li>
+                                <li>
+                                    <a href="/WriterTitle/MyTitles/">Başlıklarım</a>
+                                </li>
+                                <li>
+                                    <a href="/WriterComment/MyComments/">Yorumlarım</a>
+                                </li>
+                                <li>
+                                    <a href="/WriterProfile/Index/">Profili Düzenle</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/WriterTitle/AddTitle">Başlık Oluştur</a>
+                        </li>
+                        <li>
+                            <a href="/WriterComment/Index/">Yorum Yap</a>
+                        </li>
+
+                    }
+
+                    <li>
+                        <a href="/WriterContact/Index/">İletişim</a>
+                    </li>
+                    @if (User.IsInRole("Yazar") == false)
+                    {
+                        <li>
+                            <a href="/Register/Index/">Üye Ol</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Yazar"))
+                    {
+                        <li>
+                            <a href="/Login/LogOut/">Çıkış Yap</a>
+                        </li>
+                    }
+                </ul>
+
+                <div class="footer">
+                    <p>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır <i class="icon-heart" aria-hidden="true"></i> by Bora Lülebaş
+                    </p>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/WriterCategory/Index/">Gözat</a>
+                            </li>
+                            @if (User.IsInRole("Yazar"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/WriterProfile/Profile/0">Hoşgeldin @await Component.InvokeAsync("_UserName")</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/sidebar-01/js/jquery.min.js"></script>
+    <script src="~/sidebar-01/js/popper.js"></script>
+    <script src="~/sidebar-01/js/bootstrap.min.js"></script>
+    <script src="~/sidebar-01/js/main.js"></script>
+</body>
+</html>

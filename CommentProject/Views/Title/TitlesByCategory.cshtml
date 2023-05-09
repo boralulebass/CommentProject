@@ -1,0 +1,33 @@
+﻿@model IPagedList<Title>
+@{
+    ViewData["Title"] = "TitlesByCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>@ViewBag.categoryName Başlıkları</h2>
+    <br />
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Başlık</th>
+                <th>Oluşturan Yazar</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TitleName</td>
+                <td>@item.AppUser.Name @item.AppUser.Surname #@item.AppUserID</td>
+                <td><a href="/Comment/CommentsByTitle/@item.TitleID" class="btn btn-outline-secondary">Yorumları Görüntüle</a></td>
+                <td><a href="/Title/DeleteTitle/@item.TitleID" class="btn btn-outline-warning">Sil</a></td>
+            </tr>
+        }
+    </table>
+    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("TitlesByCategory",new {page}))
+    <br />
+    <a href="/Title/AddTitle/" class="btn btn-outline-primary">Yeni Başlık Girişi</a>
+</div>

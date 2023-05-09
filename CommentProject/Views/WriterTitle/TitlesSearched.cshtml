@@ -1,0 +1,28 @@
+﻿@model List<Title>
+@{
+    ViewData["Title"] = "TitlesSearched";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h3>Aradığınız Başlık: @ViewBag.searchedFor</h3>
+<br />
+<span>@ViewBag.message</span>
+@foreach (var item in Model)
+{
+    <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4" style="border: thin solid black">
+        <div class="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1"><i class="fa fa-sort-up fa-2x hit-voting"></i><span><a href="/WriterProfile/Profile/@item.AppUserID/">@item.AppUser.Name @item.AppUser.Surname</a></span><i class="fa fa-sort-down fa-2x hit-voting"></i></div>
+        <div class="d-flex flex-column ml-3">
+            <div class="d-flex flex-row post-title">
+                <h5><a href="/WriterComment/CommentsByTitle/@item.TitleID/">@item.TitleName</a></h5><span class="ml-2">@item.Category.CategoryName</span>
+            </div>
+            @if (User.IsInRole("Yazar"))
+            {
+            <div>
+                <a href="/WriterComment/AddCommentsWTitle/@item.TitleID" class="btn btn-outline-dark btn-sm">Yorum Yap</a>
+            </div>
+            }
+        </div>
+    </div>
+    <br />
+}
+

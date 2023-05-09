@@ -1,0 +1,19 @@
+﻿@model Title
+@{
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<form method="post">
+    <div class="container" style="color:lightgrey">
+        <h2>Başlık Oluşturma Sayfası</h2>
+        <br />
+        <label style="color:black">Başlık</label>
+        <input type="text" asp-for="TitleName" class="form-control"  required/>
+        <span asp-validation-for="TitleName" class="text-danger"></span>
+        <br />
+        <label style="color:black">Kategori Seç</label>
+        @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.v, new {@class="form-control"})
+        <br />
+        <button class="btn btn-primary">Ekle</button>
+    </div>
+</form>
