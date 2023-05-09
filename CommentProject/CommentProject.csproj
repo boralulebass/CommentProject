@@ -7,9 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\AdminLTE-3.0.4\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v2-4-x.md" />
-    <None Include="wwwroot\AdminLTE-3.0.4\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3-x.md" />
-    <None Include="wwwroot\AdminLTE-3.0.4\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v3-x.md" />
+    <Compile Remove="wwwroot\AdminLTE-3.0.4\**" />
+    <Content Remove="wwwroot\AdminLTE-3.0.4\**" />
+    <EmbeddedResource Remove="wwwroot\AdminLTE-3.0.4\**" />
+    <None Remove="wwwroot\AdminLTE-3.0.4\**" />
   </ItemGroup>
 
   <ItemGroup>
