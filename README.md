@@ -1,5 +1,5 @@
 ### Açıklama
-Comment Project Asp.Net Core 6.0 ile hazırlanmış admin, yazar ve ziyaretçi arayüzlü
+Comment Project .Net 6.0 ile hazırlanmış admin, yazar ve ziyaretçi arayüzlü
 Identity ile hazırlanmış bir sözlük sitesi projesidir.
 
 Üye olmadan insanların hangi başlıklara neler yazdıklarını görebilir veya profillerine bakıp hangi başlıkları açtıklarını ve hangi yorumları yaptıklarını görüntüleyebilirsiniz.
@@ -8,7 +8,7 @@ Admin paneli vardır. Admin yorumları ve başlıkları silebilir, kategorileri 
 Admin, üye ve ziyaretçi ayrımı Identity kullanılarak rolleme ile yapılmıştır. E-posta doğrulaması vardır random bir sayı veritabanına kaydedilir ve e-posta adresine gönderilir, doğrulama sonrası üye olunur.
 ### Kullanılan Teknolojiler
 - C#
-- Core 6.0 
+- .Net 6.0 
 - Code First
 - MS SQL
 - Html, Css Bootstrap
